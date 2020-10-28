@@ -6,7 +6,7 @@ Accurate screening with the finite element method
 
 This README is a work in progress. phienics is being actively developed and may contain bugs or instabilities! I strongly recommend getting in touch with me if you're planning to use the code so I can help support you. 
 
-## Super quickstart
+## Quickstart
 
 This code works with Python 2.7 and the FEniCS library, version 2017.2.0.
 
