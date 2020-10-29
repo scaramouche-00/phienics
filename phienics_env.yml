@@ -1,0 +1,7 @@
+name: phienics
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=2.7
+  - fenics=2017.2.0
