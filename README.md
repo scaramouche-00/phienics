@@ -20,7 +20,7 @@ To pull the 2017.2.0 version of FEniCS, specify:
 `quay.io/fenicsproject/stable:2017.2.0`
 in the commands above, as opposed to `quay.io/fenicsproject/stable`
 
-Clone or download the Astronomaly repository:<br>
+Clone or download the phienics repository:<br>
 `git clone https://github.com/scaramouche-00/phienics`
 
 Navigate to the phienics folder. To play with the code, you can start by running the UV_main.ipynb and IR_main.ipynb notebooks provided, which compute the field profiles, gradients and operators for two case-study theories.
