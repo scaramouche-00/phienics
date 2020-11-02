@@ -5,3 +5,5 @@ channels:
 dependencies:
   - python=2.7
   - fenics=2017.2.0
+  - scipy
+  - sphinx
