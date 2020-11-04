@@ -1,4 +1,1 @@
 fenics==2017.2.0
-numpy
-scipy
-sphinx
