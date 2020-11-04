@@ -9,14 +9,8 @@ version: 2
 sphinx:
   configuration: docs/conf.py
 
-name: phienics
-
 channels:
   - conda-forge
   - defaults
 
-dependencies:
-  - python=2.7
-  - fenics=2017.2.0
-  - scipy
-  - sphinx
+dependencies: docs/requirements.txt
