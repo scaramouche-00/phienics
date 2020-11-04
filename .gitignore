@@ -1,0 +1,7 @@
+phienics/*.pyc
+phienics/*py~
+
+*.yml~
+
+build/*
+dist/*
