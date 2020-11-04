@@ -5,3 +5,8 @@ phienics/*py~
 
 build/*
 dist/*
+.ipynb_checkpoints/*
+phienics.egg-info/*
+phienics/__pycache__/
+
+.DS_Store
