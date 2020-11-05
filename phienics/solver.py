@@ -236,7 +236,7 @@ class Solver(object):
         # ... and compute norm. L2 is note yet implemented
         if self.norm_res=='L2':
             message = "L2 norm not implemented for residuals. Please use a different norm ('l2' or 'linf')"
-            raise NotImplementedError, message
+            raise NotImplementedError(message)
 
         # the built-in norm function is fine because it's computing the linf or Euclidean norm here
         F_norm = d.norm( F, norm_type=self.norm_res )
@@ -289,16 +289,16 @@ class Solver(object):
 
             # write report: to keep output legible only write tolerance for the criterion that's effectively working
             if self.criterion=='residual':
-                print 'Non-linear solver, iteration %d\tabs_du = %.1e\trel_du = %.1e\t' \
-                    % (self.i, self.abs_du[self.i], self.rel_du[self.i] ),
-                print 'abs_res = %.1e (tol = %.1e)\trel_res = %.1e (tol = %.1e)' \
-                    % ( self.abs_res[self.i], self.abs_res_tol, self.rel_res[self.i], self.rel_res_tol )
+                print('Non-linear solver, iteration %d\tabs_du = %.1e\trel_du = %.1e\t' \
+                      % (self.i, self.abs_du[self.i], self.rel_du[self.i] ) )
+                print('abs_res = %.1e (tol = %.1e)\trel_res = %.1e (tol = %.1e)' \
+                    % ( self.abs_res[self.i], self.abs_res_tol, self.rel_res[self.i], self.rel_res_tol ))
 
             else:
-                print 'Non-linear solver, iteration %d\tabs_du = %.1e (tol = %.1e)\trel_du = %.1e (tol=%.1e)\t' \
-                    % (self.i, self.abs_du[self.i], self.abs_du_tol, self.rel_du[self.i], self.rel_du_tol ),
-                print 'abs_res = %.1e\trel_res = %.1e' \
-                    % ( self.abs_res[self.i], self.abs_res_tol, self.rel_res[self.i], self.rel_res_tol )
+                print('Non-linear solver, iteration %d\tabs_du = %.1e (tol = %.1e)\trel_du = %.1e (tol=%.1e)\t' \
+                      % (self.i, self.abs_du[self.i], self.abs_du_tol, self.rel_du[self.i], self.rel_du_tol ) )
+                print('abs_res = %.1e\trel_res = %.1e' \
+                    % ( self.abs_res[self.i], self.abs_res_tol, self.rel_res[self.i], self.rel_res_tol ))
 
 
             # check convergence
@@ -313,9 +313,9 @@ class Solver(object):
                 
             # if maximum number of iterations has been reached without converging, throw a warning
             if ( self.i+1 == self.max_iter and ( not self.converged ) ):
-                print "*******************************************************************************"
-                print "   WARNING: the solver hasn't converged in the maximum number of iterations"
-                print "*******************************************************************************"
+                print("*******************************************************************************")
+                print("   WARNING: the solver hasn't converged in the maximum number of iterations")
+                print("*******************************************************************************")
             
             # update for next iteration
             self.i += 1
@@ -354,7 +354,7 @@ class Solver(object):
             grad_ = field.dx(0)
         else:
             message = "Invalid choice of radial units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
     
         grad_ = project( grad_, self.fem.dS, self.fem.func_degree )
 
@@ -427,7 +427,7 @@ class Solver(object):
         # copy the Laplacian
         if self.y is None:
             message = "The Laplacian doesn't seem to have been computed. Please run solve() first."
-            raise ValueError, message
+            raise ValueError(message)
         y = d.Function( self.fem.S )
         y.assign( self.y )
         y.vector()[:] *= rescale # rescale for better precision (undone later)
@@ -567,7 +567,7 @@ class Solver(object):
         # copy the Laplacian
         if self.y is None:
             message = "The Laplacian doesn't seem to have been computed. Please run solve() first."
-            raise ValueError, message
+            raise ValueError(message)
         y = d.Function( self.y.function_space() )
         y.assign( self.y )
         y.vector()[:] *= rescale # rescale for better precision (undone later)

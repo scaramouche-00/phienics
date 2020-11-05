@@ -432,7 +432,7 @@ class UVSolver(Solver):
             resc_24 = self.Mn**2 * self.Mf2
         else:
             message = "Invalid choice of units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
 
         # cast params as constant functions so that, if they are set to 0, 
         # fenics still understand what it is integrating        
@@ -736,7 +736,7 @@ class UVSolver(Solver):
             
         else:
             message = "Invalid choice of units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
         
         # split solution in phi, h, y, z
         phi, h, y, z = self.phi, self.h, self.y, self.z

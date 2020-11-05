@@ -332,7 +332,7 @@ class IRSolver(Solver):
         sol = d.Function( piy_V )
         pde = d.LinearVariationalProblem( a, L, sol, Dirichlet_bc )
         solver = d.LinearVariationalSolver( pde )
-        print 'Getting KG initial guess...'
+        print('Getting KG initial guess...')
         solver.solve()
 
         # split solution into pi and y - cast as independent functions, not components of a vector function
@@ -421,7 +421,7 @@ class IRSolver(Solver):
         # solve
         w_pde = d.LinearVariationalProblem( w_a, w_L, w, w_Dirichlet_bc )
         w_solver = d.LinearVariationalSolver( w_pde )
-        print 'Getting NL initial guess...'
+        print('Getting NL initial guess...')
         w_solver.solve()
 
         # now we have w. we can obtain y by projection or interpolation
@@ -594,12 +594,9 @@ class IRSolver(Solver):
             resc_1 = self.Mn**2 * self.Mf1
             resc_2 = ( self.Mn**2 * self.Mf1 )**self.fields.n
             resc_3 = self.Mn**2 * self.Mf1
-            print '********************************************************************************************************************'
-            print '   WARNING: residuals of equation 2 may hit the minimum representable number, consider using rescaled units instead'
-            print '********************************************************************************************************************'
         else:
             message = "Invalid choice of units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
         
         
         # cast params as constant functions so that, if they are set to 0, FEniCS still understand
@@ -848,9 +845,9 @@ class IRSolver(Solver):
             resc_1 = self.Mn**2 * self.Mf1
             resc_2 = ( self.Mn**2 * self.Mf1 )**self.fields.n
             resc_3 = self.Mn**2 * self.Mf1
-            print '********************************************************************************************************************'
-            print '   WARNING: numbers in equation 2 may hit the minimum representable number, consider using rescaled units instead'
-            print '********************************************************************************************************************'
+            print('********************************************************************************************************************')
+            print('   WARNING: numbers in equation 2 may hit the minimum representable number, consider using rescaled units instead')
+            print('********************************************************************************************************************')
             str_pi, str_w, str_y = '\\pi', 'W', 'Y'
             str_nabla2 = '\\nabla^2'
             str_m2 = 'm^2'
@@ -859,7 +856,7 @@ class IRSolver(Solver):
             
         else:
             message = "Invalid choice of units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
         
         pi, w, y = self.pi, self.w, self.y
         
@@ -936,3 +933,4 @@ class IRSolver(Solver):
             return result, label
         else:
             return result
+#print
