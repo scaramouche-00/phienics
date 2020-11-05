@@ -117,7 +117,6 @@ def r2_errornorm(u, uh, norm_type="l2", degree_rise=3, mesh=None ):
 
 
     # Get mesh
-    if mesh is None:
     if isinstance(u, cpp.function.Function) and mesh is None:
         mesh = u.function_space().mesh()
     if isinstance(uh, cpp.function.Function) and mesh is None:
