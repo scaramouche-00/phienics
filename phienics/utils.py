@@ -18,27 +18,25 @@ connected correctly in plots.
 
 
 # import of original norm and errornorm functions (minus projection)
-from six import string_types
 import ufl
 from ufl import inner, grad, div, curl, dx, FiniteElement, VectorElement, Coefficient
 from math import sqrt
 
 import dolfin.cpp as cpp
 
-from dolfin.cpp import GenericVector, GenericFunction, Function, Mesh, error, Vector
+from dolfin.cpp.la import GenericVector, Vector
+from dolfin.function.function import Function
+from dolfin.cpp.mesh import Mesh
 from dolfin.fem.interpolation import interpolate
+from dolfin.function.functionspace import (FunctionSpace,
+                                           VectorFunctionSpace,
+                                           TensorFunctionSpace)
 
-
-# same imports as in original projection file (minus multimesh)
-from dolfin.functions.function import *
-from dolfin.functions.expression import *
-from dolfin.functions.functionspace import *
-from dolfin.fem.assembling import *
-
-from dolfin import Expression
+from dolfin.fem.projection import _extract_function_space
 
 
 # mine
+from dolfin import Expression
 import numpy as np
 
 
@@ -62,24 +60,9 @@ def r2_norm(v, func_degree=None, norm_type="L2", mesh=None):
 
     """
 
-    if not isinstance(v, (GenericVector, GenericFunction)):
-        cpp.dolfin_error("norms.py",
-                         "compute norm",
-                         "expected a GenericVector or GenericFunction")
-
-    # Check arguments
-    if not isinstance(norm_type, string_types):
-        cpp.dolfin_error("norms.py",
-                         "compute norm",
-                         "Norm type must be a string, not " +
-                         str(type(norm_type)))
-    if mesh is not None and not isinstance(mesh, cpp.Mesh):
-        cpp.dolfin_error("norms.py",
-                         "compute norm",
-                         "Expecting a Mesh, not " + str(type(mesh)))
 
     # Get mesh from function
-    if isinstance(v, Function) and mesh is None:
+    if mesh is None:
         mesh = v.function_space().mesh()
 
     # Define integration measure and domain
@@ -89,7 +72,7 @@ def r2_norm(v, func_degree=None, norm_type="L2", mesh=None):
     if isinstance(v, GenericVector):
         return v.norm(norm_type.lower())
     
-    elif (isinstance(v, Coefficient) and isinstance(v, GenericFunction)):
+    elif (isinstance(v, Coefficient) and isinstance(v, Function)):
         # DS: HERE IS WHERE I MODIFY
         r2 = Expression('pow(x[0],2)', degree=func_degree)
     
@@ -108,30 +91,12 @@ def r2_norm(v, func_degree=None, norm_type="L2", mesh=None):
         elif norm_type.lower() == "hcurl0":
             M = curl(v)**2 * r2 * dx
         else:
-            cpp.dolfin_error("norms.py",
-                             "compute norm",
-                             "Unknown norm type (\"%s\") for functions"
-                             % str(norm_type))
+            raise ValueError("Unknown norm type {}".format(str(norm_type)))
     else:
-        cpp.dolfin_error("norms.py",
-                         "compute norm",
-                         "Unknown object type. Must be a vector or a function")
+        raise TypeError("Do not know how to compute norm of {}".format(str(v)))
 
-    # DS CHANGED: applied this bug fix:
-    # https://bitbucket.org/fenics-project/dolfin/diff/site-packages/dolfin/fem/norms.py?diff2=c438724fa5d7&at=jan/general-discrete-gradient
-    # Assemble value
-    # r = assemble(M, form_compiler_parameters={"representation": "quadrature"})
-    r = assemble(M)
-
-    # Check value
-    if r < 0.0:
-        cpp.dolfin_error("norms.py",
-                         "compute norm",
-                         "Square of norm is negative, might be a round-off error")
-    elif r == 0.0:
-        return 0.0
-    else:
-        return sqrt(r)
+    # Assemble value and return
+    return sqrt(assemble(M))
 
 
 
@@ -140,7 +105,7 @@ def r2_norm(v, func_degree=None, norm_type="L2", mesh=None):
 
     
 
-def r2_errornorm(u, uh, func_degree=None, norm_type="l2", degree_rise=3, mesh=None ):
+def r2_errornorm(u, uh, norm_type="l2", degree_rise=3, mesh=None ):
     """
     This function is a modification of FEniCS's built-in errornorm function that adopts the :math:`r^2dr`
     measure as opposed to the standard Cartesian :math:`dx` measure.
@@ -148,45 +113,34 @@ def r2_errornorm(u, uh, func_degree=None, norm_type="l2", degree_rise=3, mesh=No
     For documentation and usage, see the 
     `original module <https://bitbucket.org/fenics-project/dolfin/src/master/python/dolfin/fem/norms.py>`_.
 
-    .. note:: Note the extra argument func_degree: this is used to interpolate the :math:`r^2` 
-              Expression to the same degree as used in the definition of the Trial and Test function
-              spaces.
-
     """
 
-    # Check argument
-    if not isinstance(u, cpp.GenericFunction):
-        cpp.dolfin_error("norms.py",
-                         "compute error norm",
-                         "Expecting a Function or Expression for u")
-    if not isinstance(uh, cpp.Function):
-        cpp.dolfin_error("norms.py",
-                         "compute error norm",
-                         "Expecting a Function for uh")
 
     # Get mesh
-    if isinstance(u, Function) and mesh is None:
-        mesh = u.function_space().mesh()
-    if isinstance(uh, Function) and mesh is None:
-        mesh = uh.function_space().mesh()
     if mesh is None:
-        cpp.dolfin_error("norms.py",
-                         "compute error norm",
-                         "Missing mesh")
+    if isinstance(u, cpp.function.Function) and mesh is None:
+        mesh = u.function_space().mesh()
+    if isinstance(uh, cpp.function.Function) and mesh is None:
+        mesh = uh.function_space().mesh()
+    # if isinstance(uh, MultiMeshFunction) and mesh is None:
+    #     mesh = uh.function_space().multimesh()
+    if hasattr(uh, "_cpp_object") and mesh is None:
+        mesh = uh._cpp_object.function_space().mesh()
+    if hasattr(u, "_cpp_object") and mesh is None:
+        mesh = u._cpp_object.function_space().mesh()
+    if mesh is None:
+        raise RuntimeError("Cannot compute error norm. Missing mesh.")
 
     # Get rank
     if not u.ufl_shape == uh.ufl_shape:
-        cpp.dolfin_error("norms.py",
-                         "compute error norm",
-                         "Value shapes don't match")
+        raise RuntimeError("Cannot compute error norm. Value shapes do not match.")
+    
     shape = u.ufl_shape
     rank = len(shape)
 
     # Check that uh is associated with a finite element
     if uh.ufl_element().degree() is None:
-        cpp.dolfin_error("norms.py",
-                         "compute error norm",
-                         "Function uh must have a finite element")
+        raise RuntimeError("Cannot compute error norm. Function uh must have a finite element.")
 
     # Degree for interpolation space. Raise degree with respect to uh.
     degree = uh.ufl_element().degree() + degree_rise
@@ -216,7 +170,7 @@ def r2_errornorm(u, uh, func_degree=None, norm_type="l2", degree_rise=3, mesh=No
     e.vector().axpy(-1.0, pi_uh.vector())
 
     # Compute norm
-    return r2_norm(e, func_degree=func_degree, norm_type=norm_type, mesh=mesh )
+    return r2_norm(e, func_degree=degree, norm_type=norm_type, mesh=mesh )
 
 
 
@@ -247,22 +201,16 @@ def project(v, V=None, func_degree=None, bcs=None, mesh=None,
         # to project an Expression
         if isinstance(v, Expression):
             # FIXME: Add handling of cpp.MultiMesh
-            if mesh is not None and isinstance(mesh, cpp.Mesh):
+            if mesh is not None and isinstance(mesh, cpp.mesh.Mesh):
                 V = FunctionSpace(mesh, v.ufl_element())
-            else:
-                cpp.dolfin_error("projection.py",
-                                 "perform projection",
-                                 "Expected a mesh when projecting an Expression")
+            # else:
+            #     cpp.dolfin_error("projection.py",
+            #                      "perform projection",
+            #                      "Expected a mesh when projecting an Expression")
         else:
             # Otherwise try extracting function space from expression
             V = _extract_function_space(v, mesh)
 
-    # Check arguments
-    if not isinstance(V, (FunctionSpace)):
-        cpp.dolfin_error("projection.py",
-                         "compute projection",
-                         "Illegal function space for projection, not a FunctionSpace:  " +
-                         str(v))
 
 
     # Ensure we have a mesh and attach to measure
@@ -287,7 +235,7 @@ def project(v, V=None, func_degree=None, bcs=None, mesh=None,
     # Solve linear system for projection
     if function is None:
         function = Function(V)
-    cpp.la_solve(A, function.vector(), b, solver_type, preconditioner_type)
+    cpp.la.solve(A, function.vector(), b, solver_type, preconditioner_type)
 
     return function
 
