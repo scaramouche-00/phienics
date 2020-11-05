@@ -98,7 +98,7 @@ class ArcTanPowerLawMesh(Mesh):
 
         if not gamma_k_test:
             message = "Invalid mesh input parameters ( gamma, k ). It must be k>0 and gamma>=1."
-            raise ValueError, message
+            raise ValueError(message)
 
 
       

@@ -164,7 +164,7 @@ class Mesh(object):
         if min(distances) < self.too_fine * d.DOLFIN_EPS:
             message = "Some mesh points are too close for machine precision: " + \
                       "check your mesh parameters or lower mesh.too_fine."
-            raise PointsTooFine, message
+            raise PointsTooFine(message)
         
 
         
@@ -223,7 +223,7 @@ class Mesh(object):
         if np.any( Tstar_prime(x_arr) < 0. ):
             message = "   WARNING: the input declustering parameters give rise to a non-monotonic mesh transform; " + \
                       "please check your k_rm and consider passing a larger (i.e. less negative) value."
-            raise NegativeDerivative, message
+            raise NegativeDerivative(message)
 
 
         
@@ -303,7 +303,7 @@ class Mesh(object):
             solv = sopt.root( F, guess, tol=self.Ntol )
             if not solv.success:
                 message = "The search for an updated transformation performing declustering failed."
-                raise FinalNoConvergence, message
+                raise FinalNoConvergence(message)
             
         self.xs, self.x_rm = solv.x
         self.c = C(self.x_rm)

@@ -110,7 +110,7 @@ class ArcTanExpMesh(Mesh):
 
         if not all_fine:
             message = "Invalid mesh input parameters ( k, a, b ). It must be: k>0 and a,b>=0 but (a,b) != (0,0)."
-            raise ValueError, message
+            raise ValueError(message)
 
 
 
