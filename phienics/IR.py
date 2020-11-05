@@ -845,9 +845,9 @@ class IRSolver(Solver):
             resc_1 = self.Mn**2 * self.Mf1
             resc_2 = ( self.Mn**2 * self.Mf1 )**self.fields.n
             resc_3 = self.Mn**2 * self.Mf1
-            print('********************************************************************************************************************')
-            print('   WARNING: numbers in equation 2 may hit the minimum representable number, consider using rescaled units instead')
-            print('********************************************************************************************************************')
+            #print('********************************************************************************************************************')
+            #print('   WARNING: numbers in equation 2 may hit the minimum representable number, consider using rescaled units instead')
+            #print('********************************************************************************************************************')
             str_pi, str_w, str_y = '\\pi', 'W', 'Y'
             str_nabla2 = '\\nabla^2'
             str_m2 = 'm^2'
