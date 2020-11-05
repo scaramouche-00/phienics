@@ -36,7 +36,8 @@ from dolfin.fem.projection import _extract_function_space
 
 
 # mine
-from dolfin import Expression
+from dolfin import Expression, TestFunction, TrialFunction
+from dolfin import assemble_system, assemble
 import numpy as np
 
 
@@ -62,7 +63,7 @@ def r2_norm(v, func_degree=None, norm_type="L2", mesh=None):
 
 
     # Get mesh from function
-    if mesh is None:
+    if isinstance(v, cpp.function.Function) and mesh is None:
         mesh = v.function_space().mesh()
 
     # Define integration measure and domain
