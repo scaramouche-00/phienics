@@ -179,13 +179,13 @@ class Mesh(object):
         
         for i in range( self.linear_refine ):
             cells = d.cells( self.mesh )
-            cell_markers = d.CellFunction( "bool", self.mesh )
+            cell_markers = d.MeshFunction( "bool", self.mesh, self.mesh.topology().dim() )
             cell_markers.set_all(False)
             for cell in cells:
                 # slice cell if (1) it's large enough to be sliced and be resolvable within machine precision
                 # (2) its left vertex is within the range specified by the user
                 left = cell.get_vertex_coordinates()[0]
-                divide = ( cell.circumradius > self.too_fine * d.DOLFIN_EPS ) and \
+                divide = ( cell.circumradius() > self.too_fine * d.DOLFIN_EPS ) and \
                         ( self.linear_start < left < self.linear_stop )        
                 if divide :
                     cell_markers[cell] = True
