@@ -5,6 +5,7 @@ phienics/*py~
 
 build/*
 dist/*
+docs/.build/*
 .ipynb_checkpoints/*
 phienics.egg-info/*
 phienics/__pycache__/
