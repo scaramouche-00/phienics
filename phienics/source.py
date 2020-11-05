@@ -109,10 +109,10 @@ class Source(object):
             try:
                 self.t = sopt.broyden1( F, self.t0 ).item()
             except sopt.nonlin.NoConvergence:
-                # if the Broyden method fails, raise warning and set f=None and t=1
-                print '****************************************************************************'
-                print '   WARNING: could not set f=%.3e. Setting f=None and t=1.' % self.f
-                print '****************************************************************************'
+                # if the Broyden method fails, print warning and set f=None and t=1
+                print('****************************************************************************')
+                print('   WARNING: could not set f=%.3e. Setting f=None and t=1.' % self.f )
+                print('****************************************************************************')
                 self.f=None
                 self.t=1.
 
@@ -132,7 +132,7 @@ class Source(object):
 
     def generate_lut( self ):
         # generate look-up-table with the fractional mass within rs for different values of t
-        print 'Generating look-up table, this may take some time...'
+        print('Generating look-up table, this may take some time...')
 
         # create dir for the look-up table, if it doesn't exist already
         if not os.path.isdir(self.lut_dir):

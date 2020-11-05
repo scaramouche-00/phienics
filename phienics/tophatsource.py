@@ -153,7 +153,7 @@ class TopHatSource(Source):
     def generate_lut( self ):
         # generate look-up-table with the fractional mass within rs for different values of t and w
         
-        print 'Generating look-up table, this may take some time...'
+        print('Generating look-up table, this may take some time...')
 
         # create dir for the look-up table, if it doesn't exist already
         if not os.path.isdir(self.lut_dir):
