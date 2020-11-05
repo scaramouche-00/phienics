@@ -132,7 +132,7 @@ class PoissonSolver(Solver):
             resc = Mn**2
         else:
             message = "Invalid choice of units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
 
         # define r for use in the computation of the Laplacian
         r = Expression( 'x[0]', degree=self.fem.func_degree )
@@ -197,7 +197,7 @@ class PoissonSolver(Solver):
             
         else:
             message = "Invalid choice of units: valid choices are 'physical' or 'rescaled'."
-            raise ValueError, message
+            raise ValueError(message)
             
         str_PhiN = '\\Phi_N'
         
