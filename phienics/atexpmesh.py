@@ -9,7 +9,7 @@ with a nonlinear mesh that's finer around the source-vacuum transition and coars
 # Copyright (C) Daniela Saadeh 2020
 # This file is part of phi-enics
 
-from mesh import Mesh
+from phienics.mesh import Mesh
 
 import scipy.optimize as sopt
 

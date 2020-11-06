@@ -8,8 +8,8 @@ This module contains a solver for the Poisson equation.
 # Copyright (C) Daniela Saadeh 2020
 # This file is part of phi-enics
 
-from solver import Solver
-from utils import project
+from phienics.solver import Solver
+from phienics.utils import project
 
 from dolfin import Expression, Constant, inner, grad, dx
 

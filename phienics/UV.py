@@ -11,8 +11,8 @@ This module contains the solver for the UV-complete theory described in Section 
 # This file is part of phi-enics
 
 
-from solver import Solver
-from utils import r2_norm, project
+from phienics.solver import Solver
+from phienics.utils import r2_norm, project
 
 from dolfin import inner, grad, dx
 from dolfin import Expression, Constant

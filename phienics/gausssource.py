@@ -9,7 +9,7 @@ This module contains the class definition of a Gaussian source profile.
 # This file is part of phi-enics
 
 
-from source import Source
+from phienics.source import Source
 from dolfin import Expression
 import numpy as np
 

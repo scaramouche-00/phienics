@@ -8,7 +8,7 @@ This module contains the class definitions of a smoothed top hat and step source
 # Copyright (C) Daniela Saadeh 2020
 # This file is part of phi-enics
 
-from source import Source
+from phienics.source import Source
 
 from dolfin import Expression
 from scipy.integrate import quad

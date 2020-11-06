@@ -9,7 +9,8 @@ This module contains basic functionalities for solvers of any theory of screenin
 # This file is part of phi-enics
 
 
-from utils import r2_norm, project
+from phienics.utils import r2_norm, project
+
 from dolfin import Expression, dx, Constant, inner, grad
 
 from scipy.special import binom
