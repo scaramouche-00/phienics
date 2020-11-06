@@ -1,3 +1,5 @@
-fenics==2017.2.0
+fenics
 numpy
 scipy
+matplotlib
+jupyter

@@ -51,8 +51,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'phienics'
-copyright = u'2020, Jonathan Braden, Clare Burrage, Benjamin Elder, Daniela Saadeh'
-author = u'Jonathan Braden, Clare Burrage, Benjamin Elder, Daniela Saadeh'
+copyright = u'2020, Daniela Saadeh'
+author = u'Daniela Saadeh'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -144,7 +144,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'phienics.tex', u'phienics Documentation',
-     u'Jonathan Braden, Clare Burrage, Benjamin Elder, Daniela Saadeh', 'manual'),
+     u'Daniela Saadeh', 'manual'),
 ]
 
 

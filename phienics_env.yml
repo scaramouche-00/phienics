@@ -5,11 +5,9 @@ channels:
   - defaults
   
 dependencies:
-  - python=2.7
-  - fenics=2017.2.0
+  - python=3
+  - fenics
   - scipy
   - numpy
-  - openssl=1.1.1h
-  - setuptools=44.0.0
-  - pip=20.1.1
-  - sphinxcontrib-websupport=1.2.4
+  - matplotlib
+  - jupyter
