@@ -18,5 +18,5 @@ setuptools.setup(
     description="Screening with the finite element method",
     long_description_content_type="text/markdown",
     url="https://github.com/scaramouche-00/phienics",
-    packages=setuptools.find_packages(),
+    packages=["phienics"],
 )
