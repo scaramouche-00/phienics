@@ -53,27 +53,27 @@ Mesh and other FEM details
 Base class
 ----------
 
-.. autoclass:: mesh.Mesh
+.. autoclass:: phienics.mesh.Mesh
    :members:
 
 ArcTanExpMesh
 -------------
 
-.. autoclass:: atexpmesh.ArcTanExpMesh
+.. autoclass:: phienics.atexpmesh.ArcTanExpMesh
    :members:
 
 
 ArcTanPowerLawMesh
 ------------------
 
-.. autoclass:: atplmesh.ArcTanPowerLawMesh
+.. autoclass:: phienics.atplmesh.ArcTanPowerLawMesh
    :members:
 
 
 Other FEM details
 -----------------
 
-.. autoclass:: fem.Fem
+.. autoclass:: phienics.fem.Fem
    :members:
 
 
@@ -88,22 +88,22 @@ Important mathematical details on the source profiles are given in Sec. 2 of the
 .. note:: For all source classes, the source mass must be expressed in units of :math:`M_P`,
 	  and the source radius in units :math:`{M_P}^{-1}`.
 
-.. autoclass:: source.Source
+.. autoclass:: phienics.source.Source
    :members:
 
-.. autoclass:: tophatsource.TopHatSource
+.. autoclass:: phienics.tophatsource.TopHatSource
    :members:
 
-.. autoclass:: tophatsource.StepSource
+.. autoclass:: phienics.tophatsource.StepSource
    :members:
 
-.. autoclass:: cossource.CosSource
+.. autoclass:: phienics.cossource.CosSource
    :members:
 
-.. autoclass:: gausssource.GaussianSource
+.. autoclass:: phienics.gausssource.GaussianSource
    :members:
 
-.. autoclass:: gcakesource.GCakeSource
+.. autoclass:: phienics.gcakesource.GCakeSource
    :members:
 
 
@@ -119,7 +119,7 @@ Solvers
 Base class
 ----------
 
-.. autoclass:: solver.Solver
+.. autoclass:: phienics.solver.Solver
    :members:
 
 
@@ -128,11 +128,11 @@ Base class
 UV theory
 ---------
 
-.. autoclass:: UV.UVFields
+.. autoclass:: phienics.UV.UVFields
    :members:
 
 
-.. autoclass:: UV.UVSolver
+.. autoclass:: phienics.V.UVSolver
    :members:
 
 
@@ -141,11 +141,11 @@ IR theory
 ---------
 
 
-.. autoclass:: IR.IRFields
+.. autoclass:: phienics.IR.IRFields
    :members:
 
 
-.. autoclass:: IR.IRSolver
+.. autoclass:: phienics.IR.IRSolver
    :members:
 
 
@@ -153,14 +153,14 @@ IR theory
 Gravity
 -------
 
-.. autoclass:: gravity.PoissonSolver
+.. autoclass:: phienics.gravity.PoissonSolver
    :members:
 
       
 
 Utilities
 =========
-.. automodule:: utils
+.. automodule:: phienics.utils
    :members:
 
 
