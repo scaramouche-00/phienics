@@ -5,9 +5,10 @@ channels:
   - defaults
   
 dependencies:
-  - python=3.6
+  - python=3
   - fenics
   - scipy
   - numpy
   - matplotlib
+  - sphinx-build
   - jupyter

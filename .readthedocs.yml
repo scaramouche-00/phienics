@@ -10,4 +10,4 @@ sphinx:
   configuration: docs/conf.py
 
 conda:
-  environment: linux64_env.txt
+  environment: phienics_env.yml
