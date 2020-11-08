@@ -10,5 +10,5 @@ dependencies:
   - scipy
   - numpy
   - matplotlib
-  - sphinx-build
+  - sphinx
   - jupyter
