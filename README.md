@@ -8,23 +8,28 @@ This README is a work in progress. phienics is being actively developed and may 
 
 ## Quickstart
 
-This code works with Python 2.7 and the FEniCS library, version 2017.2.0.
+phienics supports both Python 2.7 and Python 3: however, support for Python 2.7 will be discontinued. The Python 2.7 version runs with FEniCS 2017.2.0, whereas the Python 3.x version runs the latest version (2019.1.0 at the time of writing).
 
-I recommend running FEniCS in a docker container. Start by installing docker, by following the instructions at [docker.com](https://docs.docker.com/engine/getstarted/step_one/).
+Clone the phienics repository:
 
-<bf> Note: </bf> If you are a Windows user, please make sure to use Docker Toolbox (not Docker).
+`git clone https://github.com/scaramouche-00/phienics.git`
 
-Familiarise yourself with running FEniCS in Docker, by following the 'Quickstart' (1), 'Introduction' (2) and 'Running Jupyter notebooks' points [here][http://fenics.readthedocs.io/projects/containers/en/latest/]
+Navigate to the directory of the repository. Checkout the `python2.7` branch for Python 2.7 (i.e. enter `git checkout python2.7`), or stay in the master branch for Python 3.x (i.e. do nothing).
 
-To pull the 2017.2.0 version of FEniCS, specify:
-`quay.io/fenicsproject/stable:2017.2.0`
-in the commands above, as opposed to `quay.io/fenicsproject/stable`
+If you use Anaconda, create a new environment, using the `phienics_env.yml` file provided:
 
-Clone or download the phienics repository:<br>
-`git clone https://github.com/scaramouche-00/phienics`
+`conda env create -f phienics_env.yml`
 
-Navigate to the phienics folder. To play with the code, you can start by running the UV_main.ipynb and IR_main.ipynb notebooks provided, which compute the field profiles, gradients and operators for two case-study theories.
+Activate the environment:
+
+`conda activate phienics`
+
+Install the code, using the `setup.py` file provided:
+
+`python setup.py install`
+
+Now you can run the code. To play with it, you can start by running the `UV_main.ipynb` and `IR_main.ipynb` notebooks provided.
 
 
 
-
+Many thanks to [Michelle Lochner][https://github.com/MichelleLochner] for extremely valuable suggestions on the structure of this README and the documentation.
