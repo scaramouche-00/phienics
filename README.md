@@ -4,7 +4,7 @@ Accurate screening with the finite element method
 
 ## Warning
 
-This README is a work in progress. phienics is being actively developed and may contain bugs or instabilities! I strongly recommend getting in touch with me if you're planning to use the code so I can help support you. 
+phienics is being actively developed and may contain bugs or instabilities! I strongly recommend getting in touch with me if you're planning to use the code so I can help support you. 
 
 ## Quickstart
 
