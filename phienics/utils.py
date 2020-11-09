@@ -49,15 +49,11 @@ def r2_norm(v, func_degree=None, norm_type="L2", mesh=None):
     measure as opposed to the standard Cartesian :math:`dx` measure.
 
     For documentation and usage, see the 
-    `original module <https://bitbucket.org/fenics-project/dolfin/src/master/python/dolfin/fem/norms.py>`_.
+    original module <https://bitbucket.org/fenics-project/dolfin/src/master/python/dolfin/fem/norms.py>_.
 
     .. note:: Note the extra argument func_degree: this is used to interpolate the :math:`r^2` 
               Expression to the same degree as used in the definition of the Trial and Test function
               spaces.
-
-    .. note:: This modified function also implements this bug fix that was not in the 
-              2017.2.0 release:
-              <https://bitbucket.org/fenics-project/dolfin/commits/c438724fa5d7f19504d4e0c48695e17b774b2c2d>_
 
     """
 
@@ -112,7 +108,7 @@ def r2_errornorm(u, uh, norm_type="l2", degree_rise=3, mesh=None ):
     measure as opposed to the standard Cartesian :math:`dx` measure.
 
     For documentation and usage, see the 
-    `original module <https://bitbucket.org/fenics-project/dolfin/src/master/python/dolfin/fem/norms.py>`_.
+    original module <https://bitbucket.org/fenics-project/dolfin/src/master/python/dolfin/fem/norms.py>_.
 
     """
 

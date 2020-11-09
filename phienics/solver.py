@@ -367,9 +367,9 @@ class Solver(object):
     def scalar_force( self, field ):     
         r"""
         Returns the magnitude of the scalar force associated to the input field, per unit mass (units :math:`M_p`):
-
+        
         .. math :: F_{\varphi} = \frac{\nabla\varphi}{M_P}
-
+        
         if :math:`\varphi` is the input field.
         
         *Arguments*
