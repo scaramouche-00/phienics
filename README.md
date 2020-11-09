@@ -30,6 +30,12 @@ Install the code, using the `setup.py` file provided:
 
 Now you can run the code. To play with it, you can start by running the `UV_main.ipynb` and `IR_main.ipynb` notebooks provided.
 
+## Documentation
+
+The python documentation is hosted here:
+https://phienics.readthedocs.io
 
 
-Many thanks to [Michelle Lochner][https://github.com/MichelleLochner] for extremely valuable suggestions on the structure of this README and the documentation.
+
+
+Many thanks to Michelle Lochner (https://github.com/MichelleLochner) for extremely valuable suggestions on the structure of this README and the documentation.
