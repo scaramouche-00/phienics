@@ -17,18 +17,6 @@ phienics
 
 	     
 
-
-
-
-
-Utilities
-=========
-.. automodule:: phienics.utils
-   :members:
-
-
-
-
       
 Indices and tables
 ==================
