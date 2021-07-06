@@ -60,7 +60,7 @@ class Mesh(object):
         r_rm
             optionally decluster points around this radius, using a transformation 
             :math:`r = A_{\rm rm}/2 \arctan{\left( k_rm x \right)}` (see section 3.4.3
-            of the accompanying paper <this_will_be_the_arXiv_link>_ )
+            of the accompanying `paper <https://arxiv.org/abs/2011.07037>`_ )
         A_rm
             transformation parameter; only valid if r_rm is a valid radiusx
         k_rm
@@ -255,7 +255,7 @@ class Mesh(object):
 
     def transform_with_declustering( self ):
         """
-        Declusters points at a specified radius r_rm. See Sec. 3.4.3 of the accompanying paper <this_will_be_the_arXiv_link>_
+        Declusters points at a specified radius r_rm. See Sec. 3.4.3 of the accompanying `paper <https://arxiv.org/abs/2011.07037>`_
         for details.
 
         In order to enable this feature in custom mesh classes, the baseline trasformation, first and second

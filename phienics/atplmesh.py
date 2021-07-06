@@ -1,7 +1,7 @@
 """
 .. module:: atplmesh
 
-This module contains an example mesh class (`arctan-power law mesh`, in the accompanying `paper <arXiv reference>_`)
+This module contains an example mesh class (`arctan-power law mesh`, in the accompanying `paper <https://arxiv.org/abs/2011.07037>`_)
 with a nonlinear mesh that's finer around the source-vacuum transition and coarses everywhere else.
 
 """
@@ -20,8 +20,8 @@ import dolfin as d
 
 class ArcTanPowerLawMesh(Mesh):
     r"""
-    This class implements the Arctan-power law mesh described in detail at Sec. 3.4.2 of the accompanying paper
-    <this_will_be_the_arXiv_link>_ . This mesh applies the transformation:
+    This class implements the Arctan-power law mesh described in detail at Sec. 3.4.2 of the accompanying 
+    `paper <https://arxiv.org/abs/2011.07037>`_ . This mesh applies the transformation:
 
     .. math:: r = T(x) = \frac{2}{\pi} r_{\rm s} \arctan{(kx)} + x^{\gamma}
 
@@ -53,7 +53,7 @@ class ArcTanPowerLawMesh(Mesh):
         r_rm
             optionally remove points around this radius using a transformation 
             :math:`r = A_{\rm rm}/2 \arctan{\left( k_rm x \right)}` (see section 3.4.3
-            of the accompanying paper <this_will_be_the_arXiv_link>_ )
+            of the accompanying `paper <https://arxiv.org/abs/2011.07037>`_ )
         A_rm
             transformation parameter; only valid if r_rm is a valid radiusx
         k_rm

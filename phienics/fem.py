@@ -16,7 +16,7 @@ class Fem(object):
 
     For further details (in particular, when
     continuous vs discontinuous function spaces are employed), 
-    see the accompanying paper <this_will_be_the_arXiv_link>_.
+    see the accompanying `paper <https://arxiv.org/abs/2011.07037>`_ .
 
     *Arguments*
         mesh 

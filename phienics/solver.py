@@ -33,7 +33,7 @@ class Solver(object):
        :label: Eq_linear_solver
 
     at every iteration :math:`k`, until convergence. Eq. :eq:`Eq_linear_solver` must be supplied 
-    as :func:`linear_solver`. For further details see the `paper <arxiv_link>_`.
+    as :func:`linear_solver`. For further details see the `paper <https://arxiv.org/abs/2011.07037>`_ .
 
     Two convergence tests are available:
 
@@ -543,7 +543,7 @@ class Solver(object):
 
            which is the case for the `gradient` option.
 
-        Further details are given in `the paper <this will be the arXiv ref>_`.
+        Further details are given in the `paper <https://arxiv.org/abs/2011.07037>`_ .
 
         .. note:: The :math:`Q_n` operators are computed starting from the field's rescaled Laplacian
                   :math:`y\equiv\hat{\nabla}^2\hat{\varphi}`, so the method :func:`solve()` (solving the
